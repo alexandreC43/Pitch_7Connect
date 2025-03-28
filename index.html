@@ -25,6 +25,9 @@
         img {
             width: 100px;
         }
+        img:hover {
+            scale: 110%;
+        }
         .container {
             display: flex;
             justify-content: space-between;
@@ -45,6 +48,9 @@
             flex: 1;
             padding: 20px;
         }
+        input:hover {
+            scale: 105%;
+        }
         .result-container {
             gap: 50px; }
         .inputs {
@@ -61,8 +67,11 @@
             margin-top: 10px;
         }
         a{
-            text-decoration: none;
-            color: #ff3e20;
+            text-decoration: underline;
+            color: #3b84f4;
+        }
+        a:hover{
+            color: red;
         }
         input, textarea, button {
             width: 100%;
@@ -86,11 +95,12 @@
             resize: none;
         }
         button {
-            background: #ff7b54;
+            background: #3b84f4;
             color: white;
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
+            max-width: 300px;
         }
         button:hover {
             background: #ff3e20;
