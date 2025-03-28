@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de Pitch</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(90deg, rgba(2,0,36,1) 1%, rgba(101,102,241,1) 59%, rgba(0,0,0,1) 100%);
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        .logo-container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        img {
+            width: 100px;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 90%;
+
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .inputs, .result-container {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            justify-content: center;
+            flex: 1;
+            padding: 20px;
+        }
+        .result-container {
+            gap: 50px; }
+        .inputs {
+            margin-right: 20px;
+        }
+        h2, h3 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        a{
+            text-decoration: none;
+            color: #ff3e20;
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+        }
+        input, textarea {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            outline: none;
+        }
+        input::placeholder, textarea::placeholder {
+            color: #d3d3d3;
+            font-style: italic;
+        }
+        textarea {
+            min-height: 300px;
+            resize: none;
+        }
+        button {
+            background: #ff7b54;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #ff3e20;
+        }
+        @media (max-width: 800px) {
+            
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .inputs {
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="inputs">
+            <h2>Générateur de Pitch</h2>
+            <form id="pitchForm">
+                <label>Ton prénom :</label>
+                <input type="text" id="prenom" placeholder="Alexandre">
+                <label>Ton poste :</label>
+                <input type="text" id="poste" placeholder="Co-fondateur">
+                <label>Ton entreprise :</label>
+                <input type="text" id="entreprise" placeholder="7Connect">
+                <label>Quel problème tu résous ?</label>
+                <input type="text" id="probleme" placeholder="Les entrepreneurs ont du mal à agrandir leur réseau efficacement.">
+                <label>Qui a ce problème ?</label>
+                <input type="text" id="public" placeholder="Les entrepreneurs ambitieux qui veulent faire grossir leur business.">
+                <label>Ta solution en une phrase :</label>
+                <input type="text" id="solution" placeholder="Une plateforme de networking avec des sessions speed-meeting de 7 minutes.">
+                <label>Le principal bénéfice pour eux ?</label>
+                <input type="text" id="benefice" placeholder="Rencontrer rapidement des entrepreneurs pertinents chaque semaine.">
+                <label>Pourquoi c’est un vrai problème ?</label>
+                <input type="text" id="pourquoiProbleme" placeholder="Ils n'ont pas le temps de chercher à réseauter, ils ont la tête dans le guidon.">
+                <label>Ce qui te différencie des autres ?</label>
+                <input type="text" id="difference" placeholder="Notre algorithme mettra en relation des profils qui te correspondent">
+                <label>Ce que tu cherches ici ?</label>
+                <input type="text" id="objectif" placeholder="Trouver des utilisateurs pour tester la plateforme et explorer des collaborations.">
+                <label>Ce que tu peux apporter ?</label>
+                <input type="text" id="donner" placeholder="Partager des contacts de mon réseau si c'est pertinent ou te donner un regard extérieur sur ton business.">
+                <button type="button" onclick="genererPitch()">Générer le Pitch</button>
+            </form>
+        </div>
+        <div class="result-container">
+            <h3>Ton Pitch :</h3>
+            <textarea id="resultat" readonly></textarea>
+           
+                <a href="https://7connect-meet.com" target="_blank">
+                    <img src="images/Logo_7connect_transparent_blanc.png" alt="7Connect Logo">
+                </a>
+            <h3>7Connect : La révolution du networking.</h3>
+            <p>Envie de participer à notre bêta-test gratuit ? C'est le 10 Avril 2025 de 9h à 11h. L'occasion de tester le concept 7Connect avec +500 autres entrepreneurs. <a href="https://7connect-meet.com" target="_blank">Inscription ici</a>
+            </p>
+        </div>
+    </div>
+    <script>
+        function genererPitch() {
+            const pitch = `Salut, moi c’est ${document.getElementById('prenom').value}, je suis ${document.getElementById('poste').value} chez ${document.getElementById('entreprise').value}.
+
+Tu sais, ${document.getElementById('probleme').value}, c’est un vrai frein pour ${document.getElementById('public').value}.
+
+Chez ${document.getElementById('entreprise').value}, on a une solution : ${document.getElementById('solution').value}. En gros, ça leur permet de ${document.getElementById('benefice').value}.
+
+Et si c’est un vrai problème, c’est parce que ${document.getElementById('pourquoiProbleme').value}.
+
+Du coup, notre approche, c’est simple : ${document.getElementById('difference').value}.
+
+Aujourd’hui, je suis là pour ${document.getElementById('objectif').value}, et bien sûr, si je peux t'aider ce sera avec plaisir, je peux ${document.getElementById('donner').value}.
+
+Et toi, c’est quoi ton plus gros challenge en ce moment ?`;
+            document.getElementById('resultat').value = pitch;
+        }
+    </script>
+</body>
+</html>
